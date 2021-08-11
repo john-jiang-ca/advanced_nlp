@@ -2,7 +2,7 @@
 
 We are going to use an example to go through the general process of NLP. In a lot of documentations, segmentation, cleaning and normalization are combined with name pre-processing. The general idea of pre-processing is reducing the vocabulary's size (which in turn may improve the performance and reduce the resource consuption of downstream tasks) while keeping the most important `flags`. 
 
-![text_processing_flow.png](attachment:12e59a02-2c30-4b98-9fc8-51f70227f5c4.png)
+![text_processing_flow.png](text_processing_flow.png)
 
 ## Segmentation
 
@@ -34,7 +34,7 @@ list(segmentations)
 
     Building prefix dict from the default dictionary ...
     Loading model from cache /tmp/jieba.cache
-    Loading model cost 0.393 seconds.
+    Loading model cost 0.396 seconds.
     Prefix dict has been built successfully.
 
 
@@ -373,12 +373,7 @@ A lot of stemming process is based on `Poter Stemmer` (a rule based word transfo
 ### Lemmatization
 Since the output of stemming may not be an English word, the goal of lemmatization is to convert the word to a true English word.
 
-### Use Spark NLP to do text mornalization
-
-
-```python
-!wget -q https://raw.githubusercontent.com/mahavivo/vocabulary/master/lemmas/AntBNC_lemmas_ver_001.txt
-```
+### Use Spark NLP to do text nornalization
 
 
 ```python
@@ -667,6 +662,8 @@ result_df
 </div>
 
 
+
+_note:_ after nornalization, we can see the meaning for some word has been totally changed, which will introduce more noise to the downstream tasks instead of de-noise. It's always a trade off to choose the correct text processing piepline.
 
 In general, pre-processing is highly depends on the data itself, downstream model and task. You need to have a good understand of your data, task and downstream model before choosing the `correct` pre-process pipeline. 
 
